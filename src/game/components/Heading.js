@@ -4,15 +4,17 @@ import {
 } from "react-redux";
 
 import Timer from "./Timer";
+import Reset from "./buttons/Reset";
 
 class Heading extends React.Component {
+
     render() {
         return (
             <div id="top-bar">
                 <div title="turns left">
                     Turns: { this.props.turnsLeft }
                 </div>
-                <div className={ "reset" }  title="re-starts the game">Reset</div>
+                <Reset />
                 <Timer />
             </div>
         );

@@ -1,15 +1,15 @@
-export default function(state = {
+const initState = {
     tiles: generate(10, 10, [5, 4, 3, 3, 2]),
     turnsLeft: 48
-}, action) {
+};
+
+export default function(state = initState, action) {
 
     console.log(action);
     switch (action.type) {
 
-        case "GENERATE_TILES":
-            state = { ...state,
-                tiles: generate(action.payload.width, action.payload.height, action.payload.ships)
-            }
+        case "RESET":
+            state = initState;
             break;
 
         case "CLICK_TILE":

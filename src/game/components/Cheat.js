@@ -1,13 +1,14 @@
-import React from "react";
+import React from 'react';
+import {
+    connect
+} from "react-redux";
 
-export default class Cheat extends React.Component {
+import * as UI from "../actions/uiActions";
 
-    // TODO - add cheat
-
-    render() {
-        return (
-            <span>:</span>
-        );
-    }
-
+function Cheat(props) {
+    return (
+        <span  onClick={ () => props.dispatch(UI.cheat()) }>:</span>
+    );
 }
+
+export default connect()(Cheat);

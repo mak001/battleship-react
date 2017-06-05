@@ -7,7 +7,7 @@ export default function(state = initState, action) {
     switch (action.type) {
 
         case "CLICK_TILE":
-            if (!state.timerGoing) {
+            if (!state.startedAt) {
                 state = {
                     ...state,
                     startedAt: action.payload.now

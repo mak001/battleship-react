@@ -9,10 +9,6 @@ import * as Tiles from "../actions/boardActions";
 
 class Board extends React.Component {
 
-    componentDidMount() {
-        this.props.dispatch(Tiles.generate());
-    }
-
     renderTile(x, y) {
         return (
             <Tile
