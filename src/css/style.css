@@ -56,6 +56,16 @@ html, body, body > * {
     background-color: #ADE4D8; }
   .tile.hit {
     background-color: #FFA172; }
+  .tile.ship-0 {
+    background-color: white; }
+  .tile.ship-1 {
+    background-color: blue; }
+  .tile.ship-2 {
+    background-color: green; }
+  .tile.ship-3 {
+    background-color: black; }
+  .tile.ship-4 {
+    background-color: red; }
 
 .screen-overlay {
   display: block;

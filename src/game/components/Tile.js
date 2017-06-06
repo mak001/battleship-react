@@ -5,11 +5,13 @@ export default function Tile(props) {
 
     if (props.tile != null) {
         if (props.tile.clicked) {
-            if (props.tile.isShip) {
+            if (props.tile.ship !== undefined) {
                 classes += " hit";
             } else {
                 classes += " missed";
             }
+        } else if (props.cheating && props.tile.ship !== undefined) {
+            classes += " ship-" + props.tile.ship;
         }
     }
 

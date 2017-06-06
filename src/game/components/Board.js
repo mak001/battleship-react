@@ -14,6 +14,7 @@ class Board extends React.Component {
             <Tile
                 key={ x + '-' + y }
                 tile={ this.props.tiles[x][y] }
+                cheating={ this.props.cheating }
                 onClick={ () => this.props.dispatch(Tiles.clickTile(x, y)) }
             />
         );
@@ -55,7 +56,8 @@ class Board extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        tiles: state.board.tiles
+        tiles: state.board.tiles,
+        cheating: state.board.cheating
     };
 }
 
