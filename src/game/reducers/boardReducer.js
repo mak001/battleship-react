@@ -19,8 +19,11 @@ export default function(state = initState, action) {
 
             // t is false when tile was clicked
             if (t) {
+                let tileRow = state.tiles[x].slice();
+                tileRow[y] = t;
+
                 let tiles = state.tiles.slice();
-                tiles[x][y] = t;
+                tiles[x] = tileRow;
 
                 state = { ...state,
                     tiles: tiles,
