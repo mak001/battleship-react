@@ -29,10 +29,35 @@ export default function(state = initState, action) {
                 let tiles = state.tiles.slice();
                 tiles[x] = tileRow;
 
-                state = { ...state,
+                state = {
+                    ...state,
                     tiles: tiles,
                     turnsLeft: state.turnsLeft - 1
+                };
+
+                if (t.ship !== undefined) {
+                    let ship = getShip(t.ship, tiles);
+                    let shipSunk = ship.filter((s) => {
+                        return s.clicked === true;
+                    });
+
+                    if (shipSunk.length === ship.length) {
+
+                        let ships = getShips(tiles);
+                        let sunkShips = ships.filter((tile) => {
+                            return tile.clicked === true;
+                        });
+
+                        if (ships.length === sunkShips.length) {
+                            console.log("Game won!");
+                            // TODO
+                        } else {
+                            console.log("Sunk ship ", t.ship);
+                            // TODO???
+                        }
+                    }
                 }
+
             }
             break;
 
@@ -48,6 +73,20 @@ export default function(state = initState, action) {
     }
 
     return state;
+}
+
+function getShip(id, tiles) {
+    tiles = [].concat.apply([], tiles);
+    return tiles.filter((t) => {
+        return t !== null && t.ship === id;
+    });
+}
+
+function getShips(tiles) {
+    tiles = [].concat.apply([], tiles);
+    return tiles.filter((t) => {
+        return t !== null && t.ship !== undefined;
+    });
 }
 
 function generate(width, height, ships) {
@@ -69,7 +108,7 @@ function generateShip(tiles, length, id) {
     let direction = Math.floor(Math.random() * 2);
 
     do {
-        var row, col;
+        let row, col;
 
         if (direction === 1) {
             row = Math.floor(Math.random() * tiles.length);
@@ -79,7 +118,7 @@ function generateShip(tiles, length, id) {
             col = Math.floor(Math.random() * tiles[0].length);
         }
 
-        for (var i = 0; i < length; i++) {
+        for (let i = 0; i < length; i++) {
             if (direction === 1) {
                 coords[i] = {
                     'x': row,
