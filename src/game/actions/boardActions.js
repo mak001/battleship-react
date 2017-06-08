@@ -19,3 +19,26 @@ export function generate(w = 10, h = 10, ships = [5, 4, 3, 3, 2]) {
         }
     };
 }
+
+export function checkShip(tile) {
+    return {
+        type: "CHECK_SHIP",
+        payload: {
+            tile: tile
+        }
+    };
+}
+
+export function checkWon() {
+    return {
+        type: "CHECK_WON",
+        payload: {}
+    };
+}
+
+export function checkLost() {
+    return {
+        type: "CHECK_LOST",
+        payload: {}
+    };
+}

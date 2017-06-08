@@ -5,7 +5,6 @@ const initState = {
 
 export default function(state = initState, action) {
 
-    console.log(action);
     switch (action.type) {
 
         case "RESET":
@@ -34,30 +33,30 @@ export default function(state = initState, action) {
                     tiles: tiles,
                     turnsLeft: state.turnsLeft - 1
                 };
+            }
+            break;
 
-                if (t.ship !== undefined) {
-                    let ship = getShip(t.ship, tiles);
-                    let shipSunk = ship.filter((s) => {
-                        return s.clicked === true;
-                    });
+        case "CHECK_SHIP":
+            let tile = action.payload.tile;
+            if (tile != null && tile.clicked === undefined && tile.ship !== undefined) {
 
-                    if (shipSunk.length === ship.length) {
+                let ship = getShip(tile.ship, state.tiles);
+                let shipSunk = ship.filter((s) => {
+                    return s.clicked === true;
+                });
 
-                        let ships = getShips(tiles);
-                        let sunkShips = ships.filter((tile) => {
-                            return tile.clicked === true;
-                        });
-
-                        if (ships.length === sunkShips.length) {
-                            console.log("Game won!");
-                            // TODO
-                        } else {
-                            console.log("Sunk ship ", t.ship);
-                            // TODO???
-                        }
-                    }
+                if (shipSunk.length === ship.length && !allSunk(state.tiles)) {
+                    // TODO - come up with a better way
+                    alert("Ship sunk!");
                 }
+            }
 
+            break;
+
+        case "CHECK_WON":
+            if (allSunk(state.tiles)) {
+                // TODO - come up with a better way
+                alert("Game won!");
             }
             break;
 
@@ -89,6 +88,19 @@ function getShips(tiles) {
     });
 }
 
+function allSunk(tiles) {
+    let ships = getShips(tiles);
+    let sunkShips = ships.filter((tile) => {
+        return tile.clicked === true;
+    });
+
+    if (ships.length === sunkShips.length) {
+        return true;
+    }
+    return false;
+}
+
+// TODO - move generation code?
 function generate(width, height, ships) {
     let tiles = Array(10).fill().map(function() {
         return new Array(10).fill(null);

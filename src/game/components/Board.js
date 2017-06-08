@@ -10,12 +10,19 @@ import * as Tiles from "../actions/boardActions";
 class Board extends React.Component {
 
     renderTile(x, y) {
+        let tile = this.props.tiles[x][y];
         return (
             <Tile
                 key={ x + '-' + y }
-                tile={ this.props.tiles[x][y] }
+                tile={ tile }
                 cheating={ this.props.cheating }
-                onClick={ () => this.props.dispatch(Tiles.clickTile(x, y)) }
+                onClick={ () => {
+                        this.props.dispatch(Tiles.clickTile(x, y));
+                        this.props.dispatch(Tiles.checkShip(tile));
+                        this.props.dispatch(Tiles.checkWon());
+                        this.props.dispatch(Tiles.checkLost());
+                    }
+                }
             />
         );
     }
