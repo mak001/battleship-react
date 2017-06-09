@@ -1,11 +1,22 @@
+import {
+    ActionTypes
+} from "../actions/ActionTypes";
+
+import {
+    generate
+} from "../helpers/Generator";
+
 export function cheat() {
     return {
-        "type": "CHEAT"
+        type: ActionTypes.CHEAT
     };
 }
 
 export function reset() {
     return {
-        "type": "RESET"
+        type: ActionTypes.RESET,
+        payload: {
+            tiles: generate()
+        }
     };
 }

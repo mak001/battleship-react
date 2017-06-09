@@ -1,4 +1,5 @@
 import * as Actions from "../actions/boardActions";
+import * as Generator from "../helpers/Generator";
 
 export function click(x, y, tile, tiles) {
 
@@ -10,7 +11,7 @@ export function click(x, y, tile, tiles) {
     let action = [];
 
     tiles = updateTile(x, y, tile, "clicked", true, tiles);
-    action.push(Actions.clickTile(tiles));
+    action.push(Actions.updateTiles(tiles));
 
     if (tile.ship !== undefined) {
         let ship = getShip(tile.ship, tiles);
@@ -31,6 +32,10 @@ export function click(x, y, tile, tiles) {
     // TODO - check lose
 
     return action;
+}
+
+export function generate() {
+    return Actions.updateTiles(Generator.generate());
 }
 
 function updateTile(x, y, tile, key, value, tiles) {

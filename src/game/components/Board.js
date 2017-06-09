@@ -17,6 +17,10 @@ class Board extends React.Component {
         this.actions = bindActionCreators(Actions, props.dispatch);
     }
 
+    componentDidMount() {
+        this.actions.generate();
+    }
+
     renderTile(x, y) {
         let tiles = this.props.tiles;
         let tile = tiles[x][y];

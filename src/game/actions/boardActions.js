@@ -8,9 +8,9 @@ export function doNothing() {
     };
 }
 
-export function clickTile(tiles) {
+export function updateTiles(tiles) {
     return {
-        type: ActionTypes.CLICK_TILE,
+        type: ActionTypes.UPDATE_TILES,
         payload: {
             tiles: tiles
         }
