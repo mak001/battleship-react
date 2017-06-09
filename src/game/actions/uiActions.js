@@ -1,17 +1,11 @@
 export function cheat() {
     return {
-        "type": "CHEAT",
-        "payload": {
-
-        }
+        "type": "CHEAT"
     };
 }
 
 export function reset() {
     return {
-        "type": "RESET",
-        "payload": {
-
-        }
+        "type": "RESET"
     };
 }

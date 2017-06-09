@@ -2,27 +2,30 @@ import React from 'react';
 import {
     connect
 } from "react-redux";
+import {
+    bindActionCreators
+} from "redux";
 
 import Tile from './Tile';
 
-import * as Tiles from "../actions/boardActions";
+import * as Actions from "../actionCreators/boardActionCreators";
 
 class Board extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.actions = bindActionCreators(Actions, props.dispatch);
+    }
+
     renderTile(x, y) {
-        let tile = this.props.tiles[x][y];
+        let tiles = this.props.tiles;
+        let tile = tiles[x][y];
         return (
             <Tile
                 key={ x + '-' + y }
                 tile={ tile }
                 cheating={ this.props.cheating }
-                onClick={ () => {
-                        this.props.dispatch(Tiles.clickTile(x, y));
-                        this.props.dispatch(Tiles.checkShip(tile));
-                        this.props.dispatch(Tiles.checkWon());
-                        this.props.dispatch(Tiles.checkLost());
-                    }
-                }
+                onClick={ () => this.actions.click(x, y, tile, tiles) }
             />
         );
     }

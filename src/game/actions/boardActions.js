@@ -1,12 +1,35 @@
-export function clickTile(x, y) {
+import {
+    ActionTypes
+} from "../actions/ActionTypes";
+
+export function doNothing() {
     return {
-        type: "CLICK_TILE",
+        type: ActionTypes.DO_NOTHING
+    };
+}
+
+export function clickTile(tiles) {
+    return {
+        type: ActionTypes.CLICK_TILE,
         payload: {
-            x: x,
-            y: y,
-            now: new Date().getTime()
+            tiles: tiles
         }
     };
+}
+
+export function sinkShip(id) {
+    return {
+        type: ActionTypes.SINK_SHIP,
+        payload: {
+            shipID: id
+        }
+    };
+}
+
+export function winGame() {
+    return {
+        type: ActionTypes.WIN_GAME
+    }
 }
 
 export function generate(w = 10, h = 10, ships = [5, 4, 3, 3, 2]) {
@@ -17,28 +40,5 @@ export function generate(w = 10, h = 10, ships = [5, 4, 3, 3, 2]) {
             height: h,
             ships: ships
         }
-    };
-}
-
-export function checkShip(tile) {
-    return {
-        type: "CHECK_SHIP",
-        payload: {
-            tile: tile
-        }
-    };
-}
-
-export function checkWon() {
-    return {
-        type: "CHECK_WON",
-        payload: {}
-    };
-}
-
-export function checkLost() {
-    return {
-        type: "CHECK_LOST",
-        payload: {}
     };
 }
