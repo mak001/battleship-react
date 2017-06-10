@@ -15,8 +15,9 @@ export default function(state = initState, action) {
 
         case ActionTypes.RESET:
             state = {
-                ...state,
-                tiles: action.payload.tiles
+                ...initState,
+                tiles: action.payload.tiles,
+                cheating: state.cheating
             };
             break;
 
@@ -24,7 +25,13 @@ export default function(state = initState, action) {
             state = {
                 ...state,
                 tiles: action.payload.tiles,
-                // TODO - move this
+            };
+            break;
+
+        case ActionTypes.CLICK_TILE:
+            state = {
+                ...state,
+                tiles: action.payload.tiles,
                 turnsLeft: state.turnsLeft - 1
             };
             break;
@@ -33,6 +40,20 @@ export default function(state = initState, action) {
             state = {
                 ...state,
                 cheating: !state.cheating
+            };
+            break;
+
+        case ActionTypes.WIN_GAME:
+            state = {
+                ...state,
+                won: true
+            };
+            break;
+
+        case ActionTypes.LOSE_GAME:
+            state = {
+                ...state,
+                lost: true
             };
             break;
 

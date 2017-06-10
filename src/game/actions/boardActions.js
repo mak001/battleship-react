@@ -8,9 +8,36 @@ export function doNothing() {
     };
 }
 
+export function startTime() {
+    return {
+        type: ActionTypes.START_TIME,
+        payload: {
+            now: new Date().getTime()
+        }
+    };
+}
+
+export function endTime() {
+    return {
+        type: ActionTypes.END_TIME,
+        payload: {
+            now: new Date().getTime()
+        }
+    };
+}
+
 export function updateTiles(tiles) {
     return {
         type: ActionTypes.UPDATE_TILES,
+        payload: {
+            tiles: tiles
+        }
+    };
+}
+
+export function clickTile(tiles) {
+    return {
+        type: ActionTypes.CLICK_TILE,
         payload: {
             tiles: tiles
         }
@@ -29,6 +56,12 @@ export function sinkShip(id) {
 export function winGame() {
     return {
         type: ActionTypes.WIN_GAME
+    }
+}
+
+export function loseGame() {
+    return {
+        type: ActionTypes.LOSE_GAME
     }
 }
 

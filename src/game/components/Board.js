@@ -24,12 +24,13 @@ class Board extends React.Component {
     renderTile(x, y) {
         let tiles = this.props.tiles;
         let tile = tiles[x][y];
+        let turnsLeft = this.props.turnsLeft;
         return (
             <Tile
                 key={ x + '-' + y }
                 tile={ tile }
                 cheating={ this.props.cheating }
-                onClick={ () => this.actions.click(x, y, tile, tiles) }
+                onClick={ () => this.actions.click(x, y, tile, tiles, turnsLeft) }
             />
         );
     }
@@ -71,7 +72,8 @@ class Board extends React.Component {
 function mapStateToProps(state) {
     return {
         tiles: state.board.tiles,
-        cheating: state.board.cheating
+        cheating: state.board.cheating,
+        turnsLeft: state.board.turnsLeft
     };
 }
 

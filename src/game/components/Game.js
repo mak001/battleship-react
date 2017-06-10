@@ -1,6 +1,8 @@
 import React from 'react';
 
-import Heading from './Heading';
+import Heading from './ui/Heading';
+import Win from './ui/Win';
+import Lose from './ui/Lose';
 import Board from './Board';
 
 class Game extends React.Component {
@@ -10,6 +12,8 @@ class Game extends React.Component {
             <div>
                 <Heading />
                 <Board />
+                <Win />
+                <Lose />
             </div>
         );
     }

@@ -3,7 +3,7 @@ import {
     connect
 } from "react-redux";
 
-import Cheat from "./Cheat";
+import Cheat from "../Cheat";
 
 class Timer extends React.Component {
 
@@ -29,9 +29,15 @@ class Timer extends React.Component {
                     00< Cheat / >00
                 </div>
             );
-        } else {
+        } else if (!this.props.endedAt) {
             let time = new Date().getTime() - this.props.startedAt;
 
+            let m = this.pad(Math.floor((time / 1000 / 60) % 60).toString(), 2);
+            let s = this.pad(Math.floor((time / 1000) % 60).toString(), 2);
+
+            return `${m}:${s}`;
+        } else {
+            let time = this.props.endedAt - this.props.startedAt;
             let m = this.pad(Math.floor((time / 1000 / 60) % 60).toString(), 2);
             let s = this.pad(Math.floor((time / 1000) % 60).toString(), 2);
 
@@ -53,7 +59,8 @@ class Timer extends React.Component {
 function mapStateToProps(state) {
     console.log(state);
     return {
-        startedAt: state.timer.startedAt
+        startedAt: state.timer.startedAt,
+        endedAt: state.timer.endedAt
     };
 }
 

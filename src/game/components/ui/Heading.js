@@ -14,7 +14,9 @@ class Heading extends React.Component {
                 <div title="turns left">
                     Turns: { this.props.turnsLeft }
                 </div>
-                <Reset />
+                <Reset
+                    text="Reset"
+                />
                 <Timer />
             </div>
         );
@@ -23,8 +25,7 @@ class Heading extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        turnsLeft: state.board.turnsLeft,
-        time: state.board.time
+        turnsLeft: state.board.turnsLeft
     };
 }
 

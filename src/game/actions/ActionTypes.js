@@ -1,5 +1,6 @@
 export let ActionTypes = {
     // board actions
+    CLICK_TILE: "CLICK_TILE",
     UPDATE_TILES: "UPDATE_TILES",
     SINK_SHIP: "SINK_SHIP",
     WIN_GAME: "WIN_GAME",
